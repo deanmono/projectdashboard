@@ -1,0 +1,18 @@
+{
+  "name": "Project Dashboard",
+  "description": "A starter project for Informz",
+  "version": "0.0.0",
+  "homepage": "https://github.com/deanmono/projectdashboard",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0",
+    "angular-bootstrap": "~1.1.0",
+    "bootstrap": "~3.3.6",
+    "angular-animate": "~1.4.8"
+  }
+}

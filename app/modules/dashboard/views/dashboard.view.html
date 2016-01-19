@@ -1,0 +1,110 @@
+<div class="row">
+    <div class="col-xs-12">
+        <alert alert-info="alertChange"></alert>
+        <div class="well">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="searchFields">Search Fields</label>
+                        <input type="text" class="form-control" id="searchFields" placeholder="Search" ng-model="search.$">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control input-sm" ng-model="search.status">
+                            <option ng-repeat="status in statuses" title="{{status.name}}" ng-selected="status.name == search.status" value="{{status.name}}">{{status.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="createdStart">Created Start Date</label>
+                        <input type="date" class="form-control" id="createdStart" ng-model="created.dateStart">
+                    </div>
+                    <div class="form-group">
+                        <label for="createdEnd">Created End Date</label>
+                        <input type="date" class="form-control" id="createdEnd" ng-model="created.dateEnd">
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label for="modifiedStart">Modified Start Date</label>
+                        <input type="date" class="form-control" id="modifiedStart" ng-model="modified.dateStart">
+                    </div>
+                    <div class="form-group">
+                        <label for="modifiedEnd">Modified End Date</label>
+                        <input type="date" class="form-control" id="modifiedEnd" ng-model="modified.dateEnd">
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label>Budget Minimum</label>
+                        <input type="number" class="form-control" name="budgetMin" min="0" max="100000" step="10000" ng-model="budget.min">
+                    </div>
+                    <div class="form-group">
+                        <label>Budget Maximum</label>
+                        <input type="number" class="form-control" name="budgetMax" min="0" max="100000" step="10000" ng-model="budget.max">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <strong>Total Records:</strong> {{ DashboardService.records.length }}<br />
+                    <strong>Filtered:</strong> {{results.length}}
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Division</th>
+                    <th>Project Owner</th>
+                    <th>Budget</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Modified</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="edit" ng-repeat="
+                    record in DashboardService.records |
+                    filter:search |
+                    createdRange : created.dateStart : created.dateEnd |
+                    modifiedRange : modified.dateStart : modified.dateEnd |
+                    budgetRange : budget.min : budget.max |
+                    filter:query as results"
+                    ng-class="isEditable == record.$$hashKey ? 'warning' : ''" ng-click="editRecord(record)">
+                    <td>{{ record.title }}</td>
+                    <td>{{ record.division }}</td>
+                    <td>
+                        <div ng-hide="isEditable == record.$$hashKey">{{ record.project_owner }}</div>
+                        <div ng-show="isEditable == record.$$hashKey">
+                            <input class="form-control input-sm"  type="text" ng-init="record.project_owner" ng-model="record.project_owner"  ng-change="recordChanged(record.project_owner)">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="isEditable == record.$$hashKey">{{ record.budget | currency}}</div>
+                        <div ng-show="isEditable == record.$$hashKey">
+                            <input class="form-control input-sm" type="text" ng-init="record.budget" ng-model="record.budget" ng-change="recordChanged(record.budget)">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="isEditable == record.$$hashKey">{{ record.status}}</div>
+                        <select class="form-control input-sm" ng-show="isEditable == record.$$hashKey" ng-model="record.status" ng-init="record.status" ng-change="recordChanged(record.status)">
+                            <option ng-repeat="status in statuses" title="{{status.name}}" ng-selected="status.name == record.status" value="{{status.name}}">{{status.name}}</option>
+                        </select>
+                    </td>
+                    <td>{{ record.created }}</td>
+                    <td>{{ record.modified }}</td>
+                    <td>
+                        <button class="btn btn-default btn-xs btn-block" ng-hide="isEditable == record.$$hashKey">More Details</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

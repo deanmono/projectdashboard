@@ -1,0 +1,15 @@
+body {
+  padding-top: 70px; }
+
+.sidenav {
+  width: inherit;
+  position: fixed;
+  padding-right: 20px; }
+
+.edit {
+  cursor: pointer; }
+
+tbody tr:hover {
+  background: lightgrey !important; }
+
+/*# sourceMappingURL=app.css.map */

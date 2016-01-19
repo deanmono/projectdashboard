@@ -6,7 +6,7 @@ To get you started you can simply clone the repository and install the dependenc
 
 You need git to clone the repository.
 
-### Clone angular-seed
+### Clone Repo
 
 Clone the repository using git:
 

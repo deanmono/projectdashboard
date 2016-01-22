@@ -75,7 +75,7 @@
                     modifiedRange : modified.dateStart : modified.dateEnd |
                     budgetRange : budget.min : budget.max |
                     filter:query as results"
-                    ng-class="isEditable == record.$$hashKey ? 'warning' : ''" ng-click="editRecord($index)">
+                    ng-class="isEditable == $index ? 'warning' : ''" ng-click="editRecord($index)">
                     <td>{{ record.title }}</td>
                     <td>{{ record.division }}</td>
                     <td>

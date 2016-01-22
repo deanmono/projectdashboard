@@ -11,19 +11,25 @@ angular.module('project.dashboard').controller('DashboardCtrl', [
 
         $scope.statuses = [
             {
-                name: ''
+                name: 'All',
+                val: ''
             },
             {
-                name: 'new'
+                name: 'New',
+                val: 'new'
             },
             {
-                name: 'working'
+                name: 'Working',
+                val: 'working'
             },
             {
-                name: 'archived'
+                name: 'Archived',
+                val: 'archived'
+
             },
             {
-                name: 'delivered'
+                name: 'Delivered',
+                val: 'delivered'
             }
         ];
 

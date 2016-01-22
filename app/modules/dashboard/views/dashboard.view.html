@@ -92,7 +92,7 @@
                     <td>
                         <div ng-hide="isEditable == $index">{{ record.status}}</div>
                         <select class="form-control input-sm" ng-show="isEditable == $index" ng-model="record.status" ng-init="record.status" ng-change="recordChanged(record.status)">
-                            <option ng-repeat="status in statuses" title="{{status.name}}" ng-selected="status.name == record.status" value="{{status.name}}">{{status.name}}</option>
+                            <option ng-repeat="status in statuses.slice(1,entries.length)" title="{{status.name}}" ng-selected="status.val == record.status" value="{{status.val}}">{{status.name}}</option>
                         </select>
                     </td>
                     <td>{{ record.created }}</td>

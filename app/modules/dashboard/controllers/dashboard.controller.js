@@ -44,9 +44,9 @@ angular.module('project.dashboard').controller('DashboardCtrl', [
 
         $scope.alertChange = false;
 
-        $scope.editRecord = function (record) {
+        $scope.editRecord = function ($index) {
             $scope.alertChange = false;
-            $scope.isEditable = record.$$hashKey;
+            $scope.isEditable = $index;
         };
 
         $scope.recordChanged = function(value) {

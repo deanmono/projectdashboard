@@ -75,31 +75,31 @@
                     modifiedRange : modified.dateStart : modified.dateEnd |
                     budgetRange : budget.min : budget.max |
                     filter:query as results"
-                    ng-class="isEditable == record.$$hashKey ? 'warning' : ''" ng-click="editRecord(record)">
+                    ng-class="isEditable == record.$$hashKey ? 'warning' : ''" ng-click="editRecord($index)">
                     <td>{{ record.title }}</td>
                     <td>{{ record.division }}</td>
                     <td>
-                        <div ng-hide="isEditable == record.$$hashKey">{{ record.project_owner }}</div>
-                        <div ng-show="isEditable == record.$$hashKey">
+                        <div ng-hide="isEditable == $index">{{ record.project_owner }}</div>
+                        <div ng-show="isEditable == $index">
                             <input class="form-control input-sm"  type="text" ng-init="record.project_owner" ng-model="record.project_owner"  ng-change="recordChanged(record.project_owner)">
                         </div>
                     </td>
                     <td>
-                        <div ng-hide="isEditable == record.$$hashKey">{{ record.budget | currency}}</div>
-                        <div ng-show="isEditable == record.$$hashKey">
+                        <div ng-hide="isEditable == $index">{{ record.budget | currency}}</div>
+                        <div ng-show="isEditable == $index">
                             <input class="form-control input-sm" type="text" ng-init="record.budget" ng-model="record.budget" ng-change="recordChanged(record.budget)">
                         </div>
                     </td>
                     <td>
-                        <div ng-hide="isEditable == record.$$hashKey">{{ record.status}}</div>
-                        <select class="form-control input-sm" ng-show="isEditable == record.$$hashKey" ng-model="record.status" ng-init="record.status" ng-change="recordChanged(record.status)">
+                        <div ng-hide="isEditable == $index">{{ record.status}}</div>
+                        <select class="form-control input-sm" ng-show="isEditable == $index" ng-model="record.status" ng-init="record.status" ng-change="recordChanged(record.status)">
                             <option ng-repeat="status in statuses" title="{{status.name}}" ng-selected="status.name == record.status" value="{{status.name}}">{{status.name}}</option>
                         </select>
                     </td>
                     <td>{{ record.created }}</td>
                     <td>{{ record.modified }}</td>
                     <td>
-                        <button class="btn btn-default btn-xs btn-block" ng-hide="isEditable == record.$$hashKey">More Details</button>
+                        <button class="btn btn-default btn-xs btn-block" ng-hide="isEditable == $index">More Details</button>
                     </td>
                 </tr>
 
